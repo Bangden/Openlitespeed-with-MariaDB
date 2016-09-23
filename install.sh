@@ -34,11 +34,11 @@ echo "++++++++++++++++++++++++++++++++++++++++++++++++++++"
 cd /etc/yum.repos.d/
 wget https://raw.githubusercontent.com/Bangden/Script-Installation-OpenLitespeed-Centos6/master/MariaDB.repo
 echo ""
-cd /
-/sbin/service iptables stop
+cd ~
+sudo /sbin/service iptables stop
 sudo yum -y update
 echo ""
-sudo yum install MariaDB-server MariaDB-client -y
+sudo yum -y install MariaDB-server MariaDB-client
 echo ""
 echo "Sekarang start mysql"
 sudo /etc/init.d/mysql start
@@ -151,11 +151,18 @@ wget https://raw.githubusercontent.com/Bangden/Script-Installation-OpenLitespeed
 echo ""
 sudo chown -R lsadm:lsadm /usr/local/lsws/conf/httpd_config.conf
 echo ""
+cd /
+wget http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64_5.1.2.tar.gz
+tar -xvzf ioncube*
+echo "zend_extension = /ioncube/ioncube_loader_lin_5.6.so" >> /usr/local/lsws/lsphp56/etc/php.ini
+cp /ioncube/loader-wizard.php /usr/local/lsws/Example/html
+cd ~
+echo ""
 sudo /etc/init.d/lsws restart
 sudo /etc/init.d/mysql restart
-echo "====================="
-echo " STATUS MYSQL & LSWS "
-echo "====================="
+echo "======================================"
+echo " STATUS MYSQL & LSWS & Ioncube Loader	"
+echo "======================================"
 service lsws status
 service mysql status
 echo ""
@@ -177,6 +184,9 @@ echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "========================================================="
 echo "= Halaman login OpenLitespeed                           ="
 echo "= IP: https://$ipserver:7080                            "
+echo "========================================================="
+echo " Cek IonCube Loader:"
+echo " $ipserver/loader-wizard.php?page=default&timeout=1&hostprovider=&hosturl=&stype=l"
 echo "========================================================="
 echo "= Seting Wordpressnya                                   ="
 echo "= Melalui IP: $ipserver / Domain Anda                    "
