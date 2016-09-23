@@ -153,8 +153,9 @@ sudo chown -R lsadm:lsadm /usr/local/lsws/conf/httpd_config.conf
 echo ""
 sudo /etc/init.d/lsws restart
 sudo /etc/init.d/mysql restart
-chkconfig mysql ON
-chkconfig lsws ON
+echo "====================="
+echo " STATUS MYSQL & LSWS "
+echo "====================="
 service lsws status
 service mysql status
 echo ""
@@ -180,4 +181,4 @@ echo "========================================================="
 echo "= Seting Wordpressnya                                   ="
 echo "= Melalui IP: $ipserver / Domain Anda                    "
 echo "========================================================="
-echo "					      https://bangden.id                       "
+echo "                https://bangden.id                       "
